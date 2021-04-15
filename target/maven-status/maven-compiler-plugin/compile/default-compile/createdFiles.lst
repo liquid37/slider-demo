@@ -1,0 +1,16 @@
+com\liquid\spider\DeepSpiderMain.class
+com\liquid\spider\SameCitySpiderMain.class
+com\liquid\spider\TestMain.class
+com\liquid\spider\pojo\OrderData.class
+com\liquid\spider\utils\SameCitySystemPropertiesUtil.class
+com\liquid\spider\utils\WebDriverUtil.class
+com\liquid\spider\constant\SystemParam.class
+com\liquid\spider\pojo\DeepOrderData.class
+com\liquid\spider\constant\DeepConstant.class
+com\liquid\spider\constant\SameCityConstant.class
+com\liquid\spider\utils\SameCityUserPropertiesUtil.class
+com\liquid\spider\SpiderMain.class
+com\liquid\spider\utils\DeepSystemPropertiesUtil.class
+com\liquid\spider\constant\CommonConstant.class
+com\liquid\spider\utils\DeepUserPropertiesUtil.class
+com\liquid\spider\utils\CommonPropertiesUtil.class
