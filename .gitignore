@@ -2,10 +2,11 @@
 .classpath
 .project
 .settings/
-target/
+target/*
 *.log*
 *.iml
 .idea/
+excels/
 *.versionsBackup
 !NOTICE-BIN
 !LICENSE-BIN
