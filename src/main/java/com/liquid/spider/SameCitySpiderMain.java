@@ -7,7 +7,6 @@ import com.liquid.spider.constant.CommonConstant;
 import com.liquid.spider.constant.SameCityConstant;
 import com.liquid.spider.pojo.OrderData;
 import com.liquid.spider.utils.*;
-import org.apache.commons.lang3.time.DateUtils;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
