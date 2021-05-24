@@ -96,11 +96,11 @@ public class DeepSpiderMain {
 
         TimeUnit.MILLISECONDS.sleep(200);
         //关闭”知道了“按钮
-        WebElement knowButtonElement = driver.findElement(By.cssSelector(".driver-close-only-btn"));
-        if (knowButtonElement != null) {
+        //WebElement knowButtonElement = driver.findElement(By.cssSelector(".driver-close-only-btn"));
+        //if (knowButtonElement != null) {
             //点解知道了
-            ((JavascriptExecutor)driver).executeScript("arguments[0].click();",knowButtonElement);
-        }
+        //    ((JavascriptExecutor)driver).executeScript("arguments[0].click();",knowButtonElement);
+        //}
         //关闭风险设置的提示方式
         WebElement alterKnowElement = driver.findElement(By.cssSelector(".confirm"));
         if(alterKnowElement!=null){
@@ -110,7 +110,7 @@ public class DeepSpiderMain {
         }
 
         //点击用户名
-        WebElement userBackendElement = driver.findElement(By.ByXPath.xpath("/html/body/div[1]/div[2]/div[1]/div/div[2]/div[1]/ul/li/div/a"));
+        WebElement userBackendElement = driver.findElement(By.ByXPath.xpath("/html/body/div[1]/div[3]/div[1]/div/div[2]/div[1]/ul/li/div/a"));
         accountName = userBackendElement.getText();
         ((JavascriptExecutor)driver).executeScript("arguments[0].click();",userBackendElement);
 
@@ -145,7 +145,7 @@ public class DeepSpiderMain {
             return;
         }
         // 点击我的订单（买）菜单
-        buyOrderItem.click();
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();",buyOrderItem);
         TimeUnit.SECONDS.sleep(2);     // todo 改成配置
 
         //查询数据
