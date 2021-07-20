@@ -67,5 +67,6 @@ public interface DeepConstant {
     String TIME_COMPONENT= "time_component";
 
     String TODAY_CSS = "today_css";
+    String DETAIL_BUTTON_XPATH = "detail_button_xpath";
     String SUBMIT_CSS = "submit_css";
 }

@@ -1,11 +1,13 @@
 package com.liquid.spider.pojo;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
 
 @Data
+@Builder
 public class DeepOrderData implements Serializable {
 
     @Excel(name = "承兑人")

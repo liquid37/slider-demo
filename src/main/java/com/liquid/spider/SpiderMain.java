@@ -1,6 +1,5 @@
 package com.liquid.spider;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class SpiderMain {
@@ -17,7 +16,7 @@ public class SpiderMain {
         if(spiderSystem == 1){
             SameCitySpiderMain.start();
         }else if(spiderSystem == 2){
-            DeepSpiderMain.start();
+            NewDeepSpiderMain.start();
         }else{
             System.exit(0);
         }
