@@ -75,4 +75,10 @@ public interface SameCityConstant {
 
     String ORDER_FINISH_TIME = "order_finish_time";
 
+    String AGREE_CHECKBOX = "agree_checkbox";
+
+    String NEXT_STEP_CSS = "next_step_css";
+
+    String STEP_TWO_CSS = "step_two_css";
+
 }

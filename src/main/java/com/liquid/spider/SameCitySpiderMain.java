@@ -74,6 +74,10 @@ public class SameCitySpiderMain {
         action.dragAndDropBy(scaleElement,320,0).perform();
         TimeUnit.MILLISECONDS.sleep(500);
 
+        // 勾选同意checkbox
+        WebElement agreeElement = WebDriverUtil.getElement(driver, By.ByXPath.xpath(SameCitySystemPropertiesUtil.get(SameCityConstant.AGREE_CHECKBOX)));
+        agreeElement.click();
+
         //点击登录按钮
         WebElement submitButton = WebDriverUtil.getElement(driver, By.ByXPath.xpath(SameCitySystemPropertiesUtil.get(SameCityConstant.SUBMIT_BUTTON))); // todo 改成配置
         submitButton.click();
@@ -115,6 +119,18 @@ public class SameCitySpiderMain {
         if(knowButton!=null){ // 有知道了的提示框，需要关闭提示框
             knowButton.click();
         }
+        WebElement nextStepButton = WebDriverUtil.isElementPresent(driver,By.cssSelector(SameCitySystemPropertiesUtil.get(SameCityConstant.NEXT_STEP_CSS)));
+        if(nextStepButton!=null){ // 有下一步按钮
+            WebElement element = WebDriverUtil.getElementFromElement(nextStepButton, By.cssSelector(".step-btn"));
+            element.click();
+        }
+        WebElement finishStepButton = WebDriverUtil.isElementPresent(driver,By.cssSelector(SameCitySystemPropertiesUtil.get(SameCityConstant.STEP_TWO_CSS)));
+        if(finishStepButton!=null){ // 有完成按钮
+            WebElement element = WebDriverUtil.getElementFromElement(finishStepButton, By.cssSelector(".step-btn"));
+            element.click();
+            //finishStepButton.click();
+        }
+
         //点击我的订单（买），从众多菜单中定位其中一个
         List<WebElement> items = WebDriverUtil.getElements(driver,By.cssSelector(SameCitySystemPropertiesUtil.get(SameCityConstant.TRADING_HALL_ANT_MENU_ITEM))); // todo 改成配置
         WebElement buyOrderItem = null;
@@ -148,13 +164,14 @@ public class SameCitySpiderMain {
         //选择交易完成条件
         WebElement orderFinishElement = WebDriverUtil.getElement(driver,By.ByXPath.xpath(SameCitySystemPropertiesUtil.get(SameCityConstant.ORDER_FINISH_XPATH)));
         orderFinishElement.click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(5);
 
         //输入统计日期
         List<WebElement> queryTimeElements = driver.findElements(By.cssSelector(".ant-calendar-range-picker-input"));
         queryTimeElements.get(0).click();
         TimeUnit.MILLISECONDS.sleep(100);
         //点击开始日期
+
         WebElement currentDateElement = driver.findElement(By.cssSelector(".ant-calendar-today"));
 
         WebElement trDateElement = WebDriverUtil.getElementFromElement(currentDateElement,By.xpath("./.."));
@@ -181,10 +198,11 @@ public class SameCitySpiderMain {
                 }
             }
         }
+        // todo 临时注释代码
         ((JavascriptExecutor)driver).executeScript("arguments[0].click();",lastDateElement);  //  开始时间
         //点击结束日期
         ((JavascriptExecutor)driver).executeScript("arguments[0].click();",currentDateElement);
-
+        TimeUnit.MILLISECONDS.sleep(5000);
         //执行查询
         List<WebElement> buttons = driver.findElement(By.cssSelector(".button-area")).findElements(By.ByTagName.tagName("button"));
         WebElement queryButton = null;

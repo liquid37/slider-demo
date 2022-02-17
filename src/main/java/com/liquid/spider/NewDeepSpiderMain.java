@@ -81,20 +81,21 @@ public class NewDeepSpiderMain {
         passwordElement.clear(); // 清空密码
         passwordElement.sendKeys(DeepUserPropertiesUtil.get(DeepConstant.PASSWORD)); // 设置密码
 
-        //定位滑块 ,滑块长度为 40 * 34  ,整个滑块区域为360 * 34 ，因此计算出滑动距离为360-40 = 320
+        //定位滑块 ,滑块长度为 40 * 34  ,整个滑块区域为380 * 34 ，因此计算出滑动距离为380-40 = 340
         WebElement scaleElement = WebDriverUtil.getElement(driver, By.ByXPath.xpath(DeepSystemPropertiesUtil.get(DeepConstant.SCALE_INPUT))); // todo 改成配置
 
         Actions action = new Actions(driver);
         // 滑动滑块
         TimeUnit.SECONDS.sleep(1);
-        action.dragAndDropBy(scaleElement, 320, 0).perform();
+        action.dragAndDropBy(scaleElement, 340, 0).perform();
         TimeUnit.MILLISECONDS.sleep(500);
 
 
         //点击登录按钮
         WebElement submitButton = WebDriverUtil.getElement(driver, By.ByXPath.xpath(DeepSystemPropertiesUtil.get(DeepConstant.SUBMIT_BUTTON))); // todo 改成配置
         submitButton.click();
-        //
+        //1
+
         TimeUnit.SECONDS.sleep(5);
 
         String loginUserInfo = driver.getLocalStorage().getItem("F_user");
@@ -113,8 +114,11 @@ public class NewDeepSpiderMain {
             httpPost.addHeader("Content-Type", "application/json");
             DeepOrderLIstQO listQueryQO = new DeepOrderLIstQO();
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            listQueryQO.setStartTime(format.format(new Date()));
-            listQueryQO.setEndTime(format.format(new Date()));
+            Date startDate = format.parse("2021-11-30");
+            //listQueryQO.setStartTime(format.format(new Date()));
+            //listQueryQO.setEndTime(format.format(new Date()));
+            listQueryQO.setStartTime("2021-11-30");
+            listQueryQO.setEndTime("2021-11-30");
             HttpEntity entity = new StringEntity(JSONObject.toJSONString(listQueryQO), "UTF-8");
             httpPost.setEntity(entity);
             response = httpClient.execute(httpPost);
@@ -190,7 +194,7 @@ public class NewDeepSpiderMain {
                 .acceptor(orderData.getString("acceptance"))
                 .billNo(orderData.getString("draftNo"))
                 .amount(formatAmount(orderData.getString("draftAmt")))  // 以分为单位。需要转成万
-                .deposit(orderData.getString("sellerReceivableAmt")) // 保证金
+                .deposit(formatAmount(orderData.getString("sellerReceivableAmt"))) // 保证金
                 .endDate(orderData.getString("expiryDate")+"(剩"+orderData.getString("discountDays")+"天)")
                 .payAmount(formatAmount(orderData.getString("sellerReceivableAmt")))  // 以分为单位。需要转成万
                 .yearRate(orderData.getDouble("annualInterest")/10000+"%")
